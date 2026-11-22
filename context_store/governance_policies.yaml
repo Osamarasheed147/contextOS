@@ -1,0 +1,89 @@
+version: "1.0"
+redaction_marker: "[REDACTED_BY_POLICY]"
+
+roles:
+  presales_sa:
+    description: "Pre-Sales Solutions Architect — owns discovery, SOW scope, commercial terms, and initial guardrails."
+    entities:
+      Client:
+        allowed_actions: ["read", "write", "create", "update", "delete"]
+        redacted_fields: []
+      Project:
+        allowed_actions: ["read", "write", "create", "update", "delete"]
+        redacted_fields: []
+      ScopeItem:
+        allowed_actions: ["read", "write", "create", "update", "delete"]
+        redacted_fields: []
+      Guardrail:
+        allowed_actions: ["read", "write", "create", "update", "delete"]
+        redacted_fields: []
+      ChangeRequest:
+        allowed_actions: ["read", "submit", "create"]
+        redacted_fields: []
+      Document:
+        allowed_actions: ["read", "write", "sync"]
+        redacted_fields: []
+      Skill:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      AuditEvent:
+        allowed_actions: ["read"]
+        redacted_fields: []
+
+  pm:
+    description: "Delivery Project Manager — manages project execution, commercial scope changes, and change request approvals."
+    entities:
+      Client:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      Project:
+        allowed_actions: ["read", "write", "create", "update"]
+        redacted_fields: []
+      ScopeItem:
+        allowed_actions: ["read", "write", "create", "update"]
+        redacted_fields: []
+      Guardrail:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      ChangeRequest:
+        allowed_actions: ["read", "write", "create", "update", "submit", "approve", "reject"]
+        redacted_fields: []
+      Document:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      Skill:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      AuditEvent:
+        allowed_actions: ["read"]
+        redacted_fields: []
+
+  delivery_dev:
+    description: "Delivery / Cloud Engineer — reads technical scope and guardrails; commercial pricing and margins are redacted."
+    entities:
+      Client:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      Project:
+        allowed_actions: ["read"]
+        redacted_fields:
+          - "contract_value_usd"
+          - "margin_notes"
+      ScopeItem:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      Guardrail:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      ChangeRequest:
+        allowed_actions: ["read", "submit"]
+        redacted_fields: []
+      Document:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      Skill:
+        allowed_actions: ["read"]
+        redacted_fields: []
+      AuditEvent:
+        allowed_actions: ["read"]
+        redacted_fields: []
